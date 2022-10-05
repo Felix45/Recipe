@@ -6,6 +6,11 @@ class Ability
       food.user == user
     end
 
+    can :update, Recipe do |recipe|
+      recipe.user == user
+    end
+
     can :create, Food
+    can :create, Recipe
   end
 end
