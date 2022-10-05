@@ -2,6 +2,9 @@
 
 <%= render @recipe %>
 
+<%= render "add_food", recipe: @recipe %>
+
+
 <div>
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
   <%= link_to "Back to recipes", recipes_path %>

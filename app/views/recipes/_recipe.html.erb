@@ -63,22 +63,4 @@
     <% end %>
   </div>
 <% end %>
-
-<ul>
-  <% recipe.recipes_foods.each do |food_item| %>
-    <li>
-      <div><%= food_item.food.name %></div>
-      <div><%= food_item.quantity %></div>
-      <div><%= food_item.quantity * food_item.food.price %></div>
-      <div>
-         <%= form_with url: recipes_food_path(food_item.id), method: :delete, local: true, scope: :recipe_food do |f| %>
-          <%= f.hidden_field :recipe_id, {value: recipe.id} %>
-          <%= f.hidden_field :quantity, {value: food_item.quantity} %>
-          <%= f.hidden_field :food_id, {value: food_item.food_id} %>
-          <%= f.submit 'Delete' %>
-         <% end %>
-      </div>
-    </li>
-  <% end %>
-</ul>
 </div>
