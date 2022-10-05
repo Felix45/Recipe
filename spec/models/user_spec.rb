@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it 'post should not be blank' do
+  it 'name should not be blank' do
     subject.name = '   '
     expect(subject).to_not be_valid
   end
