@@ -1,0 +1,20 @@
+<h1> Foods List </h1>
+<div><%= link_to 'Add Food', new_food_path() %></div>
+<ul>
+<% @foods.each do |food| %>
+  <li>
+    <div><%= food.name %></div>
+    <div><%= food.measurement_unit %></div>
+    <div><%= food.quantity %></div>
+    <div><%= food.price %></div>
+    <div><%= "Added by: #{food.user.name}" %></div>
+    <div>
+    <% if can? :destroy, food %> 
+      <%= form_with url: food_path(food.id), method: :delete do |f| %>
+        <%= f.submit 'Delete' %>
+      <% end %>
+    <% end %>
+    </div>
+  </li>
+<% end %>
+</ul>
