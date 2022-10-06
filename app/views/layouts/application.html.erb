@@ -14,15 +14,15 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
   </head>
-  <div class="container-fluid">
+  <div class="container-fluid px-0">
     <body>
+      <%= render 'layouts/nav'%>
       <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
       <% end %>
       <% if alert %>
         <p class="alert alert-danger"><%= alert %></p>
       <% end %>
-      <%= render 'layouts/nav'%>
       <%= yield %>
       <%= render 'layouts/footer'%>
     </body>

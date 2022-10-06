@@ -1,16 +1,17 @@
-<div class="container pt-3 pb-3">
-  <div class="card">
+<div class="container pt-4 pb-4">
+<% @recipes.each do |recipe| %>  
+<div class="card">
     <div class="card-body">
       <div class="container">
         <div class="row bg-light">
           <div class="col-6">
             <div class="card">
               <div class="card-header">
-                Jolof Rice
+                <%= recipe.name %>
               </div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <footer class="blockquote-footer">By Chef Edward</footer>
+                  <footer class="blockquote-footer"><%= "By #{recipe.user.name}" %></footer>
                 </blockquote>
               </div>
             </div>
@@ -18,8 +19,14 @@
           <div class="col-6">
             <div class="card">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Total food item: 6</li>
-                <li class="list-group-item">Total price: $140</li>
+                <li class="list-group-item">Total food item: <%= recipe.recipes_foods.size %></li>
+                <li class="list-group-item">
+                <% sum = 0 %>
+                <% recipe.recipes_foods.each do |food| %>
+                  <% sum += food.quantity * food.food.price %>
+                <% end %>
+                <%= "Total price: $#{sum}" %>
+                </li>
               </ul>
             </div>
           </div>
@@ -27,4 +34,5 @@
       </div>
     </div>
   </div>
+<% end %>
 </div>
