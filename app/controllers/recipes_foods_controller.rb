@@ -1,4 +1,13 @@
 class RecipesFoodsController < ApplicationController
+
+  def index
+    @foods = current_user.recipes_foods
+    @sum = 0
+    @foods.each do |food|
+      @sum += food.quantity * food.food.price
+    end
+  end
+
   def create
     @recipes_foods = RecipesFood.new(recipes_foods_params)
 
@@ -11,6 +20,9 @@ class RecipesFoodsController < ApplicationController
         format.json { render json: @recipes_foods.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def show
   end
 
   def destroy
