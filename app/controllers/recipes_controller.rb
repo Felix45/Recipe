@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.includes(:recipes_foods).all
+    @recipes = Recipe.includes(:recipes_foods).all.order('id DESC')
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -60,6 +60,10 @@ class RecipesController < ApplicationController
       format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def public_recipes
+    @recipes = Recipe.where(public: 't')
   end
 
   private
