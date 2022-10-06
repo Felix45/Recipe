@@ -5,13 +5,49 @@
       <div><%= food_item.quantity %></div>
       <div><%= food_item.quantity * food_item.food.price %></div>
       <div>
-         <%= form_with url: recipes_food_path(food_item.id), method: :delete, local: true, scope: :recipe_food do |f| %>
-          <%= f.hidden_field :recipe_id, {value: recipe.id} %>
-          <%= f.hidden_field :quantity, {value: food_item.quantity} %>
-          <%= f.hidden_field :food_id, {value: food_item.food_id} %>
-          <%= f.submit 'Delete' %>
-         <% end %>
+        <%= form_with url: recipes_food_path(food_item.id), method: :delete, local: true, scope: :recipe_food do |f| %>
+          <div class="form-group">
+            <%= f.hidden_field :recipe_id, {value: recipe.id} %>
+          </div>
+          <div class="form-group">
+            <%= f.hidden_field :quantity, {value: food_item.quantity} %>
+          </div>
+          <div class="form-group">
+            <%= f.hidden_field :food_id, {value: food_item.food_id} %>
+          </div>
+          <%= f.submit 'Delete', class: 'btn btn-danger' %>
+        <% end %>
       </div>
     </li>
   <% end %>
 </ul>
+
+<!--<div class="container">
+<div class="card text-center">
+  <div class="card-header">
+    Details
+  </div>
+  <div class="card-body">
+    <ul>
+      <% recipe.recipes_foods.each do |food_item| %>
+        <li>
+          <div><%= food_item.food.name %></div>
+          <div><%= food_item.quantity %></div>
+          <div><%= food_item.quantity * food_item.food.price %></div>
+          <div>
+            <%= form_with url: recipes_food_path(food_item.id), method: :delete, local: true, scope: :recipe_food do |f| %>
+              <%= f.hidden_field :recipe_id, {value: recipe.id} %>
+              <%= f.hidden_field :quantity, {value: food_item.quantity} %>
+              <%= f.hidden_field :food_id, {value: food_item.food_id} %>
+              <%= f.submit 'Delete' %>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="card-footer text-muted">
+    ~Great Food!!~
+  </div>
+</div>
+</div>
