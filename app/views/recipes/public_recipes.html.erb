@@ -1,0 +1,8 @@
+<h1>Public Recipes</h1>
+<% @recipes.each do |recipe| %>
+  <li>
+    <div><%= recipe.name %></div>
+    <div><%= "By: #{recipe.user.name}" %></div>
+    <div><%= "Total food items: #{recipe.recipes_foods.size}" %></div>
+  </li>
+<% end %>
