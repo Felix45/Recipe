@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,900&display=swap');
+
+#mainNav .navbar-brand {
+  font-size: 1.75em;
+  font-weight: bold;
+  font-style: italic;
+  color: #ee4b2b;
+  font-family: "Nunito" Arial, cursive;
+  transition: all 0.3s;
+}
