@@ -26,7 +26,41 @@
 
   <p>
     <strong>User:</strong>
-    <%= recipe.user_id %>
+    <%= recipe.user.name %>
   </p>
 
+  <% if can? :update, recipe %>
+     <%= form_with model: recipe, url: recipe_path(recipe.id), method: :patch do |f| %>
+       <%= f.hidden_field :name, {value: recipe.name} %>
+       <%= f.hidden_field :preparation_time, {value: recipe.preparation_time} %>
+       <%= f.hidden_field :cooking_time, {value: recipe.cooking_time} %>
+       <%= f.hidden_field :description, {value: recipe.description} %>
+       <%= f.label :public %>
+       <%= f.check_box :public, onchange: 'this.form.submit()', checked: recipe.public %>
+     <% end %>
+  <% end %>
+
+  <div>
+    <button> Add Ingrdient </button>
+  </div>
+<% if @food_items %>
+  <div>
+    <%= form_with url: recipes_foods_path, method: :post, local: true, scope: :recipe_food do |f| %>
+      <div>
+        <%= f.select :food_id, options_for_select(@food_items) %>
+      </div>
+      <div>
+        <%= f.hidden_field :recipe_id, {value: recipe.id} %>
+      </div>
+      <div>
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity %>
+      </div>
+
+      <div>
+        <%= f.submit :add %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 </div>
