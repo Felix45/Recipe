@@ -17,7 +17,7 @@
           <td><%= food_item.food.name %></td>
           <td><%= "#{food_item.quantity} #{food_item.food.measurement_unit}" %></td>
           <td><%= "$#{ food_item.quantity * food_item.food.price}" %></td>
-          <td>
+          <td class="d-flex">
           <% if can? :update, food_item %>
            <%= link_to 'Modify', edit_recipe_recipes_food_path(recipe.id, food_item.id), method: :patch %>
           <% end %>
@@ -27,7 +27,7 @@
                <%= f.hidden_field :recipe_id, {value: recipe.id} %>
                <%= f.hidden_field :quantity, {value: food_item.quantity} %>
                <%= f.hidden_field :food_id, {value: food_item.food_id} %>
-               <%= f.submit 'Delete' %>
+               <%= f.submit 'Delete', class: 'mx-2' %>
               <% end %>
             <% end %>
           </td>

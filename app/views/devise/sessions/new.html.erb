@@ -1,5 +1,5 @@
 <div class="login-page bg-light">
-  <div class="container mt-5 pb-2 pt-5">
+  <div class="container pb-2">
     <div class="card">
       <div class="card-header text-center">
         <h3>Sign In Now</h3>
@@ -13,8 +13,8 @@
                   <div class="form-left h-100 py-5 px-5">
                     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                       <div class="field form-group mb-3">
-                        <%= f.label :username, class: "form-label fw-bold" %><br />
-                        <%= f.text_field :username, class: "form-control", autofocus: true, autocomplete: "username" %>
+                        <%= f.label :email, class: "form-label fw-bold" %><br />
+                        <%= f.text_field :email, class: "form-control", autofocus: true, autocomplete: "username" %>
                       </div>
                       <div class="field form-group mb-3">
                         <%= f.label :password, class: "form-label fw-bold" %><br />
