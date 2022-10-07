@@ -1,7 +1,6 @@
 class RecipesFoodsController < ApplicationController
-
   def index
-    @foods = current_user.recipes_foods.select(:food_id, "SUM(quantity) as quantity").group(:food_id, :quantity)
+    @foods = current_user.recipes_foods.select(:food_id, 'SUM(quantity) as quantity').group(:food_id, :quantity)
     @sum = 0
     @foods.each do |food|
       @sum += food.quantity * food.food.price
@@ -28,7 +27,6 @@ class RecipesFoodsController < ApplicationController
     @foods.each do |food|
       @food_items << [food.name, food.id]
     end
-    @food_items
     @recipes = current_user.recipes
     @recipe_items = []
     @recipes.each do |recipe|
@@ -36,8 +34,7 @@ class RecipesFoodsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     RecipesFood.destroy(params[:id])
