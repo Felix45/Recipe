@@ -14,12 +14,12 @@
 <div class="container my-4">
 <div class="row mb-3">
 <div class="col-md-9">
-  <%= link_to 'General shopping list', recipes_foods_path, class: 'btn btn-primary' %>
+  <%= link_to 'General shopping list', recipe_recipes_foods_path(recipe.id), class: 'btn btn-primary' %>
 </div>
 
 <div class="col-md-3 d-flex justify-content-end">
  <div>
- <%= link_to 'Add Ingredient', new_recipes_food_path, class: 'btn btn-primary' %>
+ <%= link_to 'Add Ingredient', new_recipe_recipes_food_path(recipe.id), class: 'btn btn-primary' %>
  </div>
 
 </div>
