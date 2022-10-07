@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'recipes/public_recipes'
   resources :recipes
   resources :foods
   resources :recipes_foods

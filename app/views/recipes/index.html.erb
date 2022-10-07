@@ -1,11 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
-<h3>Recipe List</h3>
-
-<div id="recipes">
+<div class="container my-5" id="recipes">
+ <div class="d-flex justify-content-end">
+   <%= link_to "+ New recipe", new_recipe_path, class: 'btn btn-primary' %>
+ </div>
+</div>
+<div>
   <% @recipes.each do |recipe| %>
     <%= render recipe %>
   <% end %>
 </div>
 
-<%= link_to "New recipe", new_recipe_path %>

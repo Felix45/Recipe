@@ -1,18 +1,20 @@
 <div class="container mt-4 pt-3 pb-3">
   <div class="row bg-light">
-    <div class="col-sm-6">
+    <div class="col-sm-3 p-3">
       <div class="card">
         <div class="card-body">
           <h5 class="card-text"><%= recipe.name %></h5>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item text-success"><strong>Preparation time:</strong> <%= recipe.preparation_time %></li>
-            <li class="list-group-item text-success"><strong>Cooking time:</strong> <%= recipe.cooking_time %></li>
+            <li class="list-group-item text-success px-0"><strong>Preparation time:</strong> <%= recipe.preparation_time %>mins</li>
+            <li class="list-group-item text-success px-0"><strong>Cooking time:</strong> <%= recipe.cooking_time %> hr</li>
           </ul>
-          <a href="#" class="btn btn-danger">Remove This Recipe</a>
+          <% if can? :destroy, recipe %>
+            <%= button_to "Remove", @recipe, method: :delete, class: "btn btn-danger btn-sm" %>
+          <% end %>
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-9 p-3">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Description</h5>
@@ -22,37 +24,4 @@
       </div>
     </div>
   </div>
-</div>
-<% if can? :update, recipe %>
-  <%= form_with model: recipe, url: recipe_path(recipe.id), method: :patch do |f| %>
-    <%= f.hidden_field :name, {value: recipe.name} %>
-    <%= f.hidden_field :preparation_time, {value: recipe.preparation_time} %>
-    <%= f.hidden_field :cooking_time, {value: recipe.cooking_time} %>
-    <%= f.hidden_field :description, {value: recipe.description} %>
-    <%= f.label :public %>
-    <%= f.check_box :public, onchange: 'this.form.submit()', checked: recipe.public %>
-  <% end %>
-<% end %>
-<%# <div>
-  <button> Add Ingredient </button>
-</div> %>
-<% if @food_items %>
-  <div>
-    <%= form_with url: recipes_foods_path, method: :post, local: true, scope: :recipe_food do |f| %>
-      <div>
-        <%= f.select :food_id, options_for_select(@food_items) %>
-      </div>
-      <div>
-        <%= f.hidden_field :recipe_id, {value: recipe.id} %>
-      </div>
-      <div>
-        <%= f.label :quantity %>
-        <%= f.number_field :quantity %>
-      </div>
-      <div>
-        <%= f.submit :add %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
 </div>

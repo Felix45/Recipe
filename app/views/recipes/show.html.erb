@@ -2,12 +2,21 @@
 
 <%= render @recipe %>
 
+<%= render "add_modal", recipe: @recipe %>
+
 <%= render "add_food", recipe: @recipe %>
 
 
-<div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
+<div class="container d-flex justify-content-between my-5">
+ <div>
+  <% if can? :update, @recipe %>
+    <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> 
+  <% end %> |
   <%= link_to "Back to recipes", recipes_path %>
-
-  <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+ </div>
+ <div>
+  <% if can? :destroy, @recipe %>
+    <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+  <% end %>
+  </div>
 </div>
