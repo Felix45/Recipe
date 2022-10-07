@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.includes(:recipes_foods).all.order('id DESC')
+    @recipes = current_user.recipes.includes(:recipes_foods).all.order('id DESC')
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -63,7 +63,7 @@ class RecipesController < ApplicationController
   end
 
   def public_recipes
-    @recipes = Recipe.where(public: 't')
+    @recipes = Recipe.where(public: 't').order('id DESC')
   end
 
   private
