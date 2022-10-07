@@ -1,6 +1,8 @@
-<h1> Foods List </h1>
-<div><%= link_to 'Add Food', new_food_path() %></div>
-<table>
+<div class="container my-5">
+<div class="d-flex justify-content-end">
+  <%= link_to 'Add Food', new_food_path(), class: 'btn btn-primary' %>
+</div>
+<table class="table table-striped table-sm mt-4">
   <tr>
     <td>No</td>
     <td>Food</td>
@@ -26,3 +28,4 @@
   </tr>
 <% end %>
 </table>
+</div>
