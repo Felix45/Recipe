@@ -9,6 +9,7 @@
         <td>Food</td>
         <td>Quantity</td>
         <td>Price</td>
+        
         <td>Delete</td>
       </tr>
       <% recipe.recipes_foods.each do |food_item| %>
@@ -21,7 +22,9 @@
               <%= f.hidden_field :recipe_id, {value: recipe.id} %>
               <%= f.hidden_field :quantity, {value: food_item.quantity} %>
               <%= f.hidden_field :food_id, {value: food_item.food_id} %>
-              <%= f.submit 'Delete' %>
+              <% if can? :destroy, food_item.food %>
+               <%= f.submit 'Delete' %>
+              <% end %>
             <% end %>
           </td>
         </tr>
