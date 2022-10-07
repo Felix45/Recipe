@@ -1,20 +1,47 @@
-<h1> Foods List </h1>
-<div><%= link_to 'Add Food', new_food_path() %></div>
-<ul>
-<% @foods.each do |food| %>
-  <li>
-    <div><%= food.name %></div>
-    <div><%= food.measurement_unit %></div>
-    <div><%= food.quantity %></div>
-    <div><%= food.price %></div>
-    <div><%= "Added by: #{food.user.name}" %></div>
-    <div>
-    <% if can? :destroy, food %> 
-      <%= form_with url: food_path(food.id), method: :delete do |f| %>
-        <%= f.submit 'Delete' %>
-      <% end %>
-    <% end %>
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Food List</h3>
     </div>
-  </li>
-<% end %>
-</ul>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-8 mx-auto">
+          <%= link_to "Add Food", new_food_path() ,class: "btn btn-success" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 mx-auto">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Food</th>
+                <th scope="col">Measurement Unit</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @foods.each do |food| %>
+                <tr>
+                  <td><%= food.name %></td>
+                  <td><%= food.measurement_unit %></td>
+                  <td><%= food.price %></td>
+                  <td>
+                    <% if can? :destroy, food %>
+                      <%= form_with url: food_path(food.id), method: :delete do |f| %>
+                        <%= f.submit 'Delete', class: "text-danger" %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted text-center">
+      “You do not need a silver fork to eat good food.” ~ By Paul Prudhomme
+    </div>
+  </div>
+</div>
