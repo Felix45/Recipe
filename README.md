@@ -77,7 +77,8 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Hat tip to [Microverse](https://bit.ly/MicroverseTN) for giving me this project to work on
+- Hat tip to [Pexels](https://www.pexels.com/collections/side-profiles-d1j9mjy/) free stock photos used in this design.
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](./LICENSE) licensed.

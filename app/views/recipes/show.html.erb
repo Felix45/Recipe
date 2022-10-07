@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @recipe %>
+<%= render 'description', recipe: @recipe %>
 
 <% if can? :update, @recipe %>
   <%= render "add_modal", recipe: @recipe %>

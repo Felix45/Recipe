@@ -19,7 +19,7 @@
           <td><%= "$#{ food_item.quantity * food_item.food.price}" %></td>
           <td class="d-flex">
           <% if can? :update, food_item %>
-           <%= link_to 'Modify', edit_recipe_recipes_food_path(recipe.id, food_item.id), method: :patch %>
+           <%= link_to 'Modify', edit_recipe_recipes_food_path(recipe.id, food_item.id), method: :patch, class: 'btn btn-sm btn-primary' %>
           <% end %>
 
            <% if can? :destroy, food_item.food %>
