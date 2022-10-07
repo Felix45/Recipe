@@ -3,10 +3,9 @@ require 'date'
 
 RSpec.describe RecipesFood, type: :model do
   before(:all) do
-    @user = User.create(name: 'Felix', username: "#{DateTime.now}", email: "#{DateTime.now}@gmail.com",
-      password: '123456',
-      password_confirmation: '123456'
-    )
+    @user = User.create(name: 'Felix', username: DateTime.now.to_s, email: "#{DateTime.now}@gmail.com",
+                        password: '123456',
+                        password_confirmation: '123456')
     @food = @user.foods.new(name: 'Tomato', measurement_unit: 'litres', price: 50, quantity: 500)
     @recipe = @user.recipes.new(name: 'Chicken stew', preparation_time: 10, cooking_time: 50, description: '500', public: 't')
     @recipes_foods = RecipesFood.new(recipe: @recipe, food: @food, quantity: 5)

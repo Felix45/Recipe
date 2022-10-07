@@ -4,7 +4,7 @@ RSpec.describe Food, type: :model do
   before(:all) do
     @user = User.create(
       name: 'Felix',
-      username: "#{DateTime.now}",
+      username: DateTime.now.to_s,
       email: "#{DateTime.now}@gmail.com",
       password: '123456',
       password_confirmation: '123456'
