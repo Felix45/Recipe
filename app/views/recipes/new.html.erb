@@ -1,8 +1,24 @@
-<div class="container mt-3">
-  <h1>New recipe</h1>
-  <%= render "form", recipe: @recipe %>
-  <br>
-  <div>
-    <%= link_to "Back to recipes", recipes_path %>
+<div class="container mt-5 pb-2 pt-5">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Add New Recipe</h3>
+    </div>
+    <div class="card-body">
+      <%# <h1></h1> %>
+      <div class="row">
+        <div class="col-sm-6 mx-auto">
+          <%= render "form", recipe: @recipe %>
+          <br>
+          <div>
+            <span><%= link_to "", recipes_path, class: "fas fa-arrow-left fa-lg text-decoration-none" %></span>
+            <span><%= link_to "Back to Recipes", recipes_path, class: "text-decoration-none" %></span>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted text-center">
+      “You do not need a silver fork to eat good food.” ~ By Paul Prudhomme
+    </div>
   </div>
 </div>
