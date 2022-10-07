@@ -8,15 +8,15 @@ class RecipesFoodsController < ApplicationController
   end
 
   def create
-    @recipe_food = RecipesFood.where("food_id = :x and recipe_id = :y",
+    @recipes_foods = RecipesFood.where("food_id = :x and recipe_id = :y",
     x: recipes_foods_params[:food_id], y: recipes_foods_params[:recipe_id])
 
-    if @recipe_food
-      @recipe_food.update(recipes_foods_params)
-      redirect_to recipe_path(@recipe_food)
+    if @recipes_foods.size == 0
+      @recipes_foods = RecipesFood.new(recipes_foods_params)
+    else
+      @recipes_foods.update(recipes_foods_params)
+      redirect_to recipe_url(@recipes_foods[0].recipe) and return
     end
-
-    @recipes_foods = RecipesFood.new(recipes_foods_params)
 
     respond_to do |format|
       if @recipes_foods.save
