@@ -14,7 +14,7 @@
                     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                       <div class="field form-group mb-3">
                         <%= f.label :username, class: "form-label fw-bold" %><br />
-                        <%= f.text_field :username, class: "form-control", autofocus: true, autocomplete: "email" %>
+                        <%= f.text_field :username, class: "form-control", autofocus: true, autocomplete: "username" %>
                       </div>
                       <div class="field form-group mb-3">
                         <%= f.label :password, class: "form-label fw-bold" %><br />
