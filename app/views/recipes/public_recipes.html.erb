@@ -4,7 +4,7 @@
 <div class="card mb-4">
     <div class="card-body">
       <div class="container">
-        <div class="row bg-light">
+        <div class="row bg-light p-3">
           <div class="col-6">
             <div class="card">
               <div class="card-header">
@@ -14,6 +14,9 @@
                 <blockquote class="blockquote mb-0">
                   <footer class="blockquote-footer"><%= "By #{recipe.user.name}" %></footer>
                 </blockquote>
+                <div class="mt-2">
+                  <%= link_to 'Show this recipe', recipe_path(recipe.id) %>
+                </div>
               </div>
             </div>
           </div>

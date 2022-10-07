@@ -8,14 +8,22 @@ class RecipesFoodsController < ApplicationController
   end
 
   def create
-    @recipes_foods = RecipesFood.new(recipes_foods_params)
+    @recipes_foods = RecipesFood.where('food_id = :x and recipe_id = :y',
+                                       x: recipes_foods_params[:food_id], y: recipes_foods_params[:recipe_id])
+
+    if @recipes_foods.size.zero?
+      @recipes_foods = RecipesFood.new(recipes_foods_params)
+    else
+      @recipes_foods.update(recipes_foods_params)
+      redirect_to recipe_url(@recipes_foods[0].recipe) and return
+    end
 
     respond_to do |format|
       if @recipes_foods.save
         format.html { redirect_to recipe_url(@recipes_foods.recipe), notice: 'Ingredient was successfully saved.' }
         format.json { render :show, status: :created, location: @recipes_foods.recipe }
       else
-        format.html { redirect_to new_recipes_food_url, notice: 'Ingredient was not successfully saved.' }
+        format.html { redirect_to new_recipe_recipes_food_url, notice: 'Ingredient was not successfully saved.' }
         format.json { render json: @recipes_foods.errors, status: :unprocessable_entity }
       end
     end
@@ -27,14 +35,25 @@ class RecipesFoodsController < ApplicationController
     @foods.each do |food|
       @food_items << [food.name, food.id]
     end
-    @recipes = current_user.recipes
-    @recipe_items = []
-    @recipes.each do |recipe|
-      @recipe_items << [recipe.name, recipe.id]
-    end
+    @recipe = current_user.recipes.find(params[:recipe_id])
   end
 
   def show; end
+
+  def edit
+    @recipe_food = RecipesFood.find(params[:id])
+  end
+
+  def update
+    @recipe_food = RecipesFood.find(params[:id])
+    if @recipe_food.update(recipes_foods_params)
+      flash[:succes] = 'Recipe food updated successfully'
+      redirect_to recipe_path(@recipe_food.recipe)
+    else
+      flash[:error] = 'Recipe food update failed'
+      render :edit
+    end
+  end
 
   def destroy
     RecipesFood.destroy(params[:id])

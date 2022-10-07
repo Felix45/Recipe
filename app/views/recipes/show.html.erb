@@ -2,7 +2,9 @@
 
 <%= render @recipe %>
 
-<%= render "add_modal", recipe: @recipe %>
+<% if can? :update, @recipe %>
+  <%= render "add_modal", recipe: @recipe %>
+<% end %>
 
 <%= render "add_food", recipe: @recipe %>
 
@@ -11,7 +13,7 @@
  <div>
   <% if can? :update, @recipe %>
     <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> 
-  <% end %> |
+  | <% end %>
   <%= link_to "Back to recipes", recipes_path %>
  </div>
  <div>

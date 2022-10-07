@@ -9,19 +9,26 @@
         <td>Food</td>
         <td>Quantity</td>
         <td>Price</td>
-        <td>Delete</td>
+        
+        <td>Actions</td>
       </tr>
       <% recipe.recipes_foods.each do |food_item| %>
         <tr>
           <td><%= food_item.food.name %></td>
           <td><%= "#{food_item.quantity} #{food_item.food.measurement_unit}" %></td>
           <td><%= "$#{ food_item.quantity * food_item.food.price}" %></td>
-          <td>
-            <%= form_with url: recipes_food_path(food_item.id), method: :delete, local: true, scope: :recipe_food do |f| %>
-              <%= f.hidden_field :recipe_id, {value: recipe.id} %>
-              <%= f.hidden_field :quantity, {value: food_item.quantity} %>
-              <%= f.hidden_field :food_id, {value: food_item.food_id} %>
-              <%= f.submit 'Delete' %>
+          <td class="d-flex">
+          <% if can? :update, food_item %>
+           <%= link_to 'Modify', edit_recipe_recipes_food_path(recipe.id, food_item.id), method: :patch %>
+          <% end %>
+
+           <% if can? :destroy, food_item.food %>
+             <%= form_with url: recipe_recipes_food_path(recipe.id, food_item.id), method: :delete, local: true, scope: :recipe_food do |f| %>
+               <%= f.hidden_field :recipe_id, {value: recipe.id} %>
+               <%= f.hidden_field :quantity, {value: food_item.quantity} %>
+               <%= f.hidden_field :food_id, {value: food_item.food_id} %>
+               <%= f.submit 'Delete', class: 'mx-2' %>
+              <% end %>
             <% end %>
           </td>
         </tr>
