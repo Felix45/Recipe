@@ -1,0 +1,20 @@
+ <!-- Masthead-->
+<header class="masthead">
+  <div class="container-fluid px-0">
+    <h3 class="">
+      <% if current_user %>
+        <%= "Hi, #{current_user.name.split(' ')[0]} !!" %>
+      <% end %>
+    </h3>
+    <div class="masthead-subheading">Welcome To Our Recipe Corner!</div>
+        <div class="masthead-heading text-uppercase">Let's make our kitchen magnificent</div>
+        <% if current_user.nil? %>    
+          <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-primary btn-xl text-uppercase"  %>
+        <% else %>
+          <%= link_to "Add food", new_food_path, class: "btn btn-primary btn-xl"  %>
+          <%= link_to "Add recipe", new_recipe_path, class: "btn btn-primary btn-xl"  %>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</header>

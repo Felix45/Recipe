@@ -1,0 +1,31 @@
+<nav id="mainNav" class="navbar navbar-dark navbar-expand-lg bg-dark">
+  <div class="container">
+   <%= link_to 'F&E Recipe App', root_path, class: 'navbar-brand' %>
+   <button class="navbar-toggler navbar-toggler-right" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+    <div id="navbarResponsive" class="collapse navbar-collapse">
+    <ul class="navbar-nav ms-auto">
+      <% if current_user.nil? %>
+        <li class="nav-item">
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Foods', foods_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My Recipes', recipes_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Public Recipes', recipes_public_recipes_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sign Out', destroy_user_session_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+</div>
+  </div>
+</nav>

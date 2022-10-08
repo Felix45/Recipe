@@ -1,0 +1,48 @@
+<div class="container mt-5 pb-2 pt-5">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Add Food</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6 mx-auto">
+          <% if flash[:error] %>
+            <div class="alert alert-danger"><%= flash[:error] %></div>
+          <% end %>
+          <%= form_with model: newfood, url: foods_path, method: :post, local: true, scope: :food do |f| %>
+            <div>
+              <div>
+                <%= f.label :name, class: "form-label fw-bold", style: "display: block"  %> <br/>
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+              <div class="mb-3">
+                <div>
+                  <%= f.label :measurement_unit, class: "form-label fw-bold", style: "display: block"  %> <br/>
+                  <%= f.text_field :measurement_unit, class: "form-control" %>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div>
+                  <%= f.label :price, class: "form-label fw-bold", style: "display: block"  %> <br/>
+                  <%= f.text_field :price, class: "form-control" %>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div>
+                  <%= f.label :quantity, class: "form-label fw-bold", style: "display: block"  %> <br/>
+                  <%= f.number_field :quantity, class: "form-control" %>
+                </div>
+              </div>
+              <div class = "mb-3">
+                <%= f.submit "Add Food", class: "btn btn-success w-100" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted text-center">
+      “You do not need a silver fork to eat good food.” ~ By Paul Prudhomme
+    </div>
+  </div>
+</div>

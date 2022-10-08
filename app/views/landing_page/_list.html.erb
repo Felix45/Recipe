@@ -1,0 +1,41 @@
+<div class="container pt-4 pb-4">
+<% @recipes.each do |recipe| %>  
+<div class="card mb-4">
+    <div class="card-body">
+      <div class="container">
+        <div class="row bg-light p-3">
+          <div class="col-6">
+            <div class="card">
+              <div class="card-header">
+                <%= recipe.name %>
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <footer class="blockquote-footer"><%= "By #{recipe.user.name}" %></footer>
+                </blockquote>
+                <div class="mt-2">
+                  <%= link_to 'Show this recipe', recipe_path(recipe.id) %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Total food item: <%= recipe.recipes_foods.size %></li>
+                <li class="list-group-item">
+                <% sum = 0 %>
+                <% recipe.recipes_foods.each do |food| %>
+                  <% sum += food.quantity * food.food.price %>
+                <% end %>
+                <%= "Total price: $#{sum}" %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
